@@ -72,10 +72,13 @@ Examples of foundational tasks (adjust based on your project):
 
 - [ ] T005 Setup database schema and migrations framework
 - [ ] T006 [P] Setup API routing and middleware structure
-- [ ] T007 Create base models/entities that all stories depend on
-- [ ] T008 Configure error handling and logging infrastructure
-- [ ] T009 Setup environment configuration management
-- [ ] T010 Configure local reproducibility requirements from plan.md
+- [ ] T007 [P] Configure EF Core migrations for PostgreSQL when persistence is in scope
+- [ ] T008 Create base models/entities that all stories depend on
+- [ ] T009 Ensure business rules are placed outside controllers
+- [ ] T010 Configure error handling and logging infrastructure
+- [ ] T011 Setup environment configuration management
+- [ ] T012 Configure local reproducibility requirements from plan.md, including Docker Compose for PostgreSQL
+- [ ] T013 Document local run, migration, and test commands required by the feature
 
 Do not include RabbitMQ, MassTransit, Hangfire, Redis, background workers,
 caching infrastructure, authentication, collaboration, notifications, or CI/CD
@@ -95,17 +98,19 @@ tasks in the initial MVP unless a later approved spec explicitly changes scope.
 
 > **NOTE: Write these tests FIRST, ensure they FAIL before implementation**
 
-- [ ] T011 [P] [US1] Contract/API test for [endpoint] in [test path]
-- [ ] T012 [P] [US1] Integration or UI verification for [user journey] in [test path]
+- [ ] T014 [P] [US1] Contract/API test for [endpoint] in [test path]
+- [ ] T015 [P] [US1] Integration or UI verification for [user journey] in [test path]
+- [ ] T016 [P] [US1] Business rule test for [rule] in [test path]
 
 ### Implementation for User Story 1
 
-- [ ] T013 [P] [US1] Create [Entity1] model in [domain path]
-- [ ] T014 [P] [US1] Create [Entity2] model in [domain path]
-- [ ] T015 [US1] Implement [Service] in [application path] (depends on T013, T014)
-- [ ] T016 [US1] Implement [endpoint/feature] in [api or frontend path]
-- [ ] T017 [US1] Add validation and error handling
-- [ ] T018 [US1] Add logging for user story 1 operations
+- [ ] T017 [P] [US1] Create [Entity1] model in [domain path]
+- [ ] T018 [P] [US1] Create [Entity2] model in [domain path]
+- [ ] T019 [US1] Implement [use case/service] in [application path] (depends on T017, T018)
+- [ ] T020 [US1] Implement thin controller/endpoint in [api path]
+- [ ] T021 [US1] Implement simple reusable UI component or page in [frontend path]
+- [ ] T022 [US1] Add validation and error handling
+- [ ] T023 [US1] Add logging for user story 1 operations
 
 **Checkpoint**: At this point, User Story 1 should be fully functional and testable independently
 
@@ -119,15 +124,17 @@ tasks in the initial MVP unless a later approved spec explicitly changes scope.
 
 ### Tests and Verification for User Story 2
 
-- [ ] T019 [P] [US2] Contract/API test for [endpoint] in [test path]
-- [ ] T020 [P] [US2] Integration or UI verification for [user journey] in [test path]
+- [ ] T024 [P] [US2] Contract/API test for [endpoint] in [test path]
+- [ ] T025 [P] [US2] Integration or UI verification for [user journey] in [test path]
+- [ ] T026 [P] [US2] Business rule test for [rule] in [test path]
 
 ### Implementation for User Story 2
 
-- [ ] T021 [P] [US2] Create [Entity] model in [domain path]
-- [ ] T022 [US2] Implement [Service] in [application path]
-- [ ] T023 [US2] Implement [endpoint/feature] in [api or frontend path]
-- [ ] T024 [US2] Integrate with User Story 1 components (if needed)
+- [ ] T027 [P] [US2] Create [Entity] model in [domain path]
+- [ ] T028 [US2] Implement [use case/service] in [application path]
+- [ ] T029 [US2] Implement thin controller/endpoint in [api path]
+- [ ] T030 [US2] Implement simple reusable UI component or page in [frontend path]
+- [ ] T031 [US2] Integrate with User Story 1 components (if needed)
 
 **Checkpoint**: At this point, User Stories 1 AND 2 should both work independently
 
@@ -141,14 +148,16 @@ tasks in the initial MVP unless a later approved spec explicitly changes scope.
 
 ### Tests and Verification for User Story 3
 
-- [ ] T025 [P] [US3] Contract/API test for [endpoint] in [test path]
-- [ ] T026 [P] [US3] Integration or UI verification for [user journey] in [test path]
+- [ ] T032 [P] [US3] Contract/API test for [endpoint] in [test path]
+- [ ] T033 [P] [US3] Integration or UI verification for [user journey] in [test path]
+- [ ] T034 [P] [US3] Business rule test for [rule] in [test path]
 
 ### Implementation for User Story 3
 
-- [ ] T027 [P] [US3] Create [Entity] model in [domain path]
-- [ ] T028 [US3] Implement [Service] in [application path]
-- [ ] T029 [US3] Implement [endpoint/feature] in [api or frontend path]
+- [ ] T035 [P] [US3] Create [Entity] model in [domain path]
+- [ ] T036 [US3] Implement [use case/service] in [application path]
+- [ ] T037 [US3] Implement thin controller/endpoint in [api path]
+- [ ] T038 [US3] Implement simple reusable UI component or page in [frontend path]
 
 **Checkpoint**: All user stories should now be independently functional
 
@@ -163,6 +172,7 @@ tasks in the initial MVP unless a later approved spec explicitly changes scope.
 **Purpose**: Improvements that affect multiple user stories
 
 - [ ] TXXX [P] Documentation updates in docs/
+- [ ] TXXX Update README with feature setup, run, migration, and test commands
 - [ ] TXXX Code cleanup and refactoring
 - [ ] TXXX Performance optimization across all stories
 - [ ] TXXX [P] Additional unit tests or verification coverage in [test path]
@@ -193,7 +203,8 @@ tasks in the initial MVP unless a later approved spec explicitly changes scope.
 - Tests or verification tasks MUST be completed before implementation tasks for
   the same behavior are marked complete
 - Models before services
-- Services before endpoints
+- Domain models and application use cases before controllers/endpoints
+- Thin controllers before frontend integration
 - Core implementation before integration
 - Story complete before moving to next priority
 
@@ -261,4 +272,5 @@ With multiple developers:
 - Verify tests fail before implementing
 - Commit after each task or logical group
 - Stop at any checkpoint to validate story independently
+- Keep commits small and descriptive when committing completed task groups
 - Avoid: vague tasks, same file conflicts, cross-story dependencies that break independence

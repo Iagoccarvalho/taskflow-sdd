@@ -41,21 +41,27 @@
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
 - **Spec-driven sequence**: Confirm constitution review is complete and this
-  feature has a spec before plan, tasks before implementation.
+  feature has artifacts under `/specs/[###-feature-name]/` with spec before
+  plan, tasks before implementation.
 - **MVP scope discipline**: Confirm the initial MVP stays within task
   management and excludes RabbitMQ, MassTransit, Hangfire, Redis, background
   workers, caching infrastructure, authentication, collaboration,
   notifications, and CI/CD unless a later approved spec changes scope.
-- **Simple organized architecture**: Confirm the design uses .NET backend,
-  React + Vite frontend, PostgreSQL when persistence is needed, and Docker
-  Compose for local infrastructure without unjustified enterprise patterns.
+- **Backend architecture**: Confirm the design uses .NET with API,
+  Application, Domain, and Infrastructure responsibilities, and keeps business
+  rules outside controllers.
+- **Frontend architecture**: Confirm the design uses React + Vite with simple,
+  reusable components and no unjustified state-management or UI abstractions.
+- **Data persistence**: Confirm persisted data uses PostgreSQL with EF Core and
+  migrations.
 - **Testable user-value slices**: Confirm user stories are independently
   testable, prioritized, and capable of delivering a P1 MVP slice.
+- **Quality and documentation**: Confirm primary business rules have planned
+  tests or documented verification, README updates are identified, and changes
+  can be committed in small descriptive units.
 - **Local reproducibility**: Confirm runtime dependencies, environment
-  variables, and verification commands can be represented locally without
-  committed secrets.
-- **Verification plan**: Confirm each behavior has tests or a documented
-  verification method before implementation tasks are generated.
+  variables, PostgreSQL via Docker Compose, migrations, and run/test commands
+  can be documented without committed secrets.
 
 ## Project Structure
 

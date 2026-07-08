@@ -1,17 +1,21 @@
 <!--
 Sync Impact Report
-Version change: template -> 1.0.0
+Version change: 1.0.0 -> 1.1.0
 Modified principles:
-- Template principle 1 -> I. Spec-Driven Flow First
-- Template principle 2 -> II. MVP Scope Discipline
-- Template principle 3 -> III. Simple, Organized Architecture
-- Template principle 4 -> IV. Testable User-Value Slices
-- Template principle 5 -> V. Local Reproducibility
+- I. Spec-Driven Flow First -> I. Spec-Driven Development
+- II. MVP Scope Discipline -> II. Simplicity in the MVP
+- III. Simple, Organized Architecture -> III. Backend Architecture
+- IV. Testable User-Value Slices -> VI. Quality and Maintainability
+- V. Local Reproducibility -> VII. Local Execution
+Added principles:
+- IV. Frontend Architecture
+- V. Data Persistence
 Added sections:
+- Project Scope and Stack
+- Required Development Flow
+Removed sections:
 - Technology and Scope Constraints
 - Development Workflow and Quality Gates
-Removed sections:
-- None
 Templates requiring updates:
 - updated .specify/templates/plan-template.md
 - updated .specify/templates/spec-template.md
@@ -24,85 +28,106 @@ Follow-up TODOs:
 
 ## Core Principles
 
-### I. Spec-Driven Flow First
+### I. Spec-Driven Development
 Every feature MUST follow the order constitution -> spec -> plan -> tasks ->
-implementation. Implementation work MUST NOT begin until the feature has an
-approved specification, implementation plan, and task list. Changes discovered
-during implementation MUST flow back into the relevant spec, plan, or tasks
-before code is changed.
+implementation. No implementation work MAY begin until the feature has an
+approved `spec.md`, `plan.md`, and `tasks.md`. Every feature artifact MUST live
+under `/specs/[###-feature-name]/`. Any implementation discovery that changes
+scope, behavior, architecture, or verification MUST update the relevant spec,
+plan, or tasks before code changes continue.
 
-Rationale: the project exists to study Spec-Driven Development, so the workflow
-is part of the product quality bar rather than an optional process preference.
+Rationale: TaskFlow SDD is a study project that must simulate a real productive
+project, so the SDD artifacts are the source of truth for delivery decisions.
 
-### II. MVP Scope Discipline
-The initial MVP MUST include only task management capabilities. RabbitMQ,
-MassTransit, Hangfire, Redis, background job orchestration, distributed messaging,
-and caching infrastructure MUST NOT be introduced in the first feature. Future
-features MAY add these technologies only after a new spec and plan justify the
-need.
+### II. Simplicity in the MVP
+The initial MVP MUST focus on task management only. The design MUST avoid
+overengineering, speculative abstractions, and infrastructure that does not serve
+the current feature. RabbitMQ, MassTransit, Hangfire, and Redis MUST remain out
+of the MVP and MAY be introduced only by future features with their own spec,
+plan, tasks, and explicit justification.
 
-Rationale: the first learning milestone must stay small enough to validate the
-SDD flow, .NET, React, PostgreSQL, and Docker Compose without unnecessary
-infrastructure.
+Rationale: the first milestone must prove the product workflow and learning
+goals before adding distributed systems concerns.
 
-### III. Simple, Organized Architecture
-The system MUST use a simple web application architecture with clear boundaries:
-.NET backend, React + Vite frontend, PostgreSQL storage, and Docker Compose for
-local infrastructure. The backend MUST keep API, application/business rules, data
-access, and configuration responsibilities separated without adding enterprise
-patterns unless a feature plan proves they are needed.
+### III. Backend Architecture
+The backend MUST be built with .NET and organized into API, Application, Domain,
+and Infrastructure responsibilities. Controllers MUST stay thin: they MAY handle
+HTTP concerns, request binding, response mapping, and orchestration, but business
+rules MUST live outside controllers. Domain behavior and application use cases
+MUST be testable without depending on HTTP controllers.
 
-Rationale: the architecture should be understandable for study while still
-teaching maintainable separation of concerns.
+Rationale: this keeps the project simple while teaching maintainable backend
+boundaries used in real systems.
 
-### IV. Testable User-Value Slices
-Specs MUST describe independently testable user stories prioritized by value.
-Plans and tasks MUST preserve that independence so the P1 story can become a
-demonstrable MVP by itself. Each implemented behavior MUST have an explicit
-verification path, and tasks for behavior changes MUST include tests or a
-documented rationale for a different verification method.
+### IV. Frontend Architecture
+The frontend MUST use React + Vite. Components MUST be simple, readable, and
+reusable where reuse removes duplication or clarifies intent. UI code MUST keep
+business-facing flows understandable and MUST avoid unnecessary state management,
+frameworks, or abstractions until a feature plan justifies them.
 
-Rationale: SDD is only useful when each slice can be validated against user
-outcomes, not merely against implementation activity.
+Rationale: a small React application is easier to evolve when components express
+clear responsibilities instead of hiding behavior behind premature abstraction.
 
-### V. Local Reproducibility
-The project MUST remain runnable and verifiable in a local development
-environment. Runtime dependencies required by a feature MUST be represented in
-Docker Compose or documented local setup instructions before implementation
-tasks are marked complete. Secrets MUST NOT be committed; templates or examples
-MAY document required environment variables.
+### V. Data Persistence
+PostgreSQL MUST be the application database for persisted data. The backend MUST
+use EF Core for data access and migrations. Schema changes MUST be represented
+by migrations and tied to the feature tasks that require them. Direct database
+changes outside migrations are not acceptable for project state that belongs to
+the application.
 
-Rationale: reproducible local setup keeps the learning project approachable and
-prevents hidden machine-specific assumptions.
+Rationale: migrations make database evolution reviewable, repeatable, and
+aligned with the SDD artifacts.
 
-## Technology and Scope Constraints
+### VI. Quality and Maintainability
+Code MUST be readable, cohesive, and named according to its responsibility.
+Primary business rules MUST have tests or a documented verification rationale in
+the feature tasks. README documentation MUST be updated when setup, execution,
+or user-facing behavior changes. Commits MUST be small enough to review and use
+descriptive messages that state the intent of the change.
 
-- Backend target: .NET.
-- Frontend target: React + Vite.
-- Database target: PostgreSQL.
-- Local infrastructure target: Docker Compose.
-- Initial MVP scope: create, view, update, complete/reopen, and delete tasks, as
-  defined by the first feature specification.
-- Initial MVP exclusions: authentication, multi-user collaboration,
-  notifications, RabbitMQ, MassTransit, Hangfire, Redis, background workers,
-  caching infrastructure, and CI/CD.
-- Any dependency outside the target stack MUST be justified in the implementation
-  plan's Constitution Check before tasks are generated.
+Rationale: a study project only teaches good engineering if it uses the same
+quality habits expected in productive work.
 
-## Development Workflow and Quality Gates
+### VII. Local Execution
+The project MUST run locally with documented commands. Docker Compose MUST be
+used for PostgreSQL in local development. Required environment variables,
+database setup, migrations, and run/test commands MUST be documented before a
+feature is considered complete. Secrets MUST NOT be committed; examples or
+templates MAY document required configuration names.
+
+Rationale: reproducible local execution prevents hidden machine-specific
+assumptions and keeps the project easy to evaluate.
+
+## Project Scope and Stack
+
+- Project purpose: study SDD, .NET, React, Docker, PostgreSQL, and development
+  practices while simulating a real productive project.
+- Initial MVP: task management only, including task creation, listing, editing,
+  completion/reopening, and deletion as defined by the first feature spec.
+- Backend: .NET.
+- Backend structure: API, Application, Domain, Infrastructure.
+- Frontend: React + Vite.
+- Database: PostgreSQL.
+- Data access: EF Core with migrations.
+- Local infrastructure: Docker Compose for PostgreSQL.
+- Deferred technologies for future features: RabbitMQ, MassTransit, Hangfire,
+  Redis, distributed messaging, background jobs, and caching infrastructure.
+
+## Required Development Flow
 
 1. Constitution review MUST happen before creating or changing feature specs.
-2. Feature specs MUST define user stories, acceptance scenarios, functional
-   requirements, key entities when data exists, success criteria, assumptions,
-   and out-of-scope boundaries.
+2. Feature specs MUST be created under `/specs/[###-feature-name]/` and define
+   user stories, acceptance scenarios, functional requirements, key entities
+   when data exists, success criteria, assumptions, and out-of-scope boundaries.
 3. Implementation plans MUST pass the Constitution Check before Phase 0 research
    and again after Phase 1 design.
 4. Task lists MUST be dependency-ordered, grouped by user story, and explicit
-   about which tasks are required for the MVP.
-5. Implementation MUST follow the generated tasks. If task order or scope
-   changes, update tasks.md before changing code.
-6. Verification evidence MUST be captured in the relevant plan, tasks, or
-   implementation notes before a feature is considered complete.
+   about which tasks form the MVP.
+5. Implementation MUST follow the generated tasks. If task order, scope,
+   architecture, or verification changes, update `tasks.md` before changing
+   code.
+6. Verification evidence MUST be captured in the relevant plan, tasks, README,
+   or implementation notes before a feature is considered complete.
 
 ## Governance
 
@@ -120,7 +145,7 @@ versioning:
 
 Compliance review is required at each feature transition: before spec creation,
 before plan approval, before task generation, and before implementation begins.
-The Constitution Check in plan.md is the formal gate for recording compliance
+The Constitution Check in `plan.md` is the formal gate for recording compliance
 and any justified deviations.
 
-**Version**: 1.0.0 | **Ratified**: 2026-07-08 | **Last Amended**: 2026-07-08
+**Version**: 1.1.0 | **Ratified**: 2026-07-08 | **Last Amended**: 2026-07-08

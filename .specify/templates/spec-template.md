@@ -143,6 +143,7 @@ notifications, or CI/CD.
 
 ## Constitution Alignment *(mandatory)*
 
-- **SDD Flow**: [Confirm this spec follows constitution -> spec before plan/tasks/implementation]
-- **Architecture Scope**: [Confirm simple .NET + React + PostgreSQL + Docker Compose direction or explain N/A]
+- **SDD Flow**: [Confirm this feature lives under /specs and follows constitution -> spec before plan/tasks/implementation]
+- **MVP Simplicity**: [Confirm this feature avoids overengineering and excludes deferred infrastructure unless explicitly in scope]
+- **Architecture Scope**: [Confirm .NET API/Application/Domain/Infrastructure, React + Vite, PostgreSQL + EF Core migrations, and Docker Compose direction or explain N/A]
 - **Verification**: [Describe how each user story can be tested or otherwise verified independently]
