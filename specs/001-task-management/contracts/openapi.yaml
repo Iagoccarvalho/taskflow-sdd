@@ -1,0 +1,262 @@
+openapi: 3.1.0
+info:
+  title: TaskFlow Task Management API
+  version: 0.1.0
+  description: REST contract for the 001-task-management feature.
+servers:
+  - url: http://localhost:5000
+    description: Local backend
+paths:
+  /api/tasks:
+    post:
+      summary: Create a task
+      operationId: createTask
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateTaskRequest"
+      responses:
+        "201":
+          description: Task created with Pending status
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TaskResponse"
+        "400":
+          description: Invalid title or request body
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+    get:
+      summary: List tasks
+      operationId: listTasks
+      responses:
+        "200":
+          description: Tasks returned successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/TaskResponse"
+  /api/tasks/{taskId}:
+    get:
+      summary: Get one task
+      operationId: getTask
+      parameters:
+        - $ref: "#/components/parameters/TaskId"
+      responses:
+        "200":
+          description: Task returned successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TaskResponse"
+        "404":
+          description: Task not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+    put:
+      summary: Update task title and description
+      operationId: updateTask
+      parameters:
+        - $ref: "#/components/parameters/TaskId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateTaskRequest"
+      responses:
+        "200":
+          description: Task updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TaskResponse"
+        "400":
+          description: Invalid title or request body
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "404":
+          description: Task not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /api/tasks/{taskId}/complete:
+    post:
+      summary: Complete a Pending task
+      operationId: completeTask
+      parameters:
+        - $ref: "#/components/parameters/TaskId"
+      responses:
+        "200":
+          description: Task completed or already completed without duplicate log
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CompleteTaskResponse"
+        "404":
+          description: Task not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /api/tasks/{taskId}/processing-logs:
+    get:
+      summary: List processing logs for one task
+      operationId: listTaskProcessingLogs
+      parameters:
+        - $ref: "#/components/parameters/TaskId"
+      responses:
+        "200":
+          description: Processing logs returned successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/TaskProcessingLogResponse"
+        "404":
+          description: Task not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /api/processing-logs:
+    get:
+      summary: List processing logs
+      operationId: listProcessingLogs
+      responses:
+        "200":
+          description: Processing logs returned successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/TaskProcessingLogResponse"
+components:
+  parameters:
+    TaskId:
+      name: taskId
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+  schemas:
+    CreateTaskRequest:
+      type: object
+      required:
+        - title
+      properties:
+        title:
+          type: string
+          minLength: 1
+        description:
+          type:
+            - string
+            - "null"
+    UpdateTaskRequest:
+      type: object
+      required:
+        - title
+      properties:
+        title:
+          type: string
+          minLength: 1
+        description:
+          type:
+            - string
+            - "null"
+    TaskResponse:
+      type: object
+      required:
+        - id
+        - title
+        - status
+        - createdAt
+        - updatedAt
+      properties:
+        id:
+          type: string
+          format: uuid
+        title:
+          type: string
+        description:
+          type:
+            - string
+            - "null"
+        status:
+          $ref: "#/components/schemas/TaskStatus"
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        completedAt:
+          type:
+            - string
+            - "null"
+          format: date-time
+    CompleteTaskResponse:
+      type: object
+      required:
+        - task
+        - processingLogCreated
+      properties:
+        task:
+          $ref: "#/components/schemas/TaskResponse"
+        processingLogCreated:
+          type: boolean
+          description: True when this request created the completion log.
+    TaskProcessingLogResponse:
+      type: object
+      required:
+        - id
+        - taskId
+        - eventType
+        - message
+        - createdAt
+      properties:
+        id:
+          type: string
+          format: uuid
+        taskId:
+          type: string
+          format: uuid
+        eventType:
+          type: string
+          enum:
+            - TaskCompleted
+        message:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+    TaskStatus:
+      type: string
+      enum:
+        - Pending
+        - Completed
+    ErrorResponse:
+      type: object
+      required:
+        - error
+      properties:
+        error:
+          type: string
+        details:
+          type: array
+          items:
+            type: string
