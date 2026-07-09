@@ -18,22 +18,22 @@
 
 **Purpose**: Create the solution skeleton, frontend skeleton, and local database infrastructure.
 
-- [ ] T001 Create backend solution `TaskFlow.sln` in `backend/TaskFlow.sln`
-- [ ] T002 Create ASP.NET Core Web API project `TaskFlow.Api` in `backend/src/TaskFlow.Api/` (depends on T001)
-- [ ] T003 [P] Create class library project `TaskFlow.Application` in `backend/src/TaskFlow.Application/` (depends on T001)
-- [ ] T004 [P] Create class library project `TaskFlow.Domain` in `backend/src/TaskFlow.Domain/` (depends on T001)
-- [ ] T005 [P] Create class library project `TaskFlow.Infrastructure` in `backend/src/TaskFlow.Infrastructure/` (depends on T001)
-- [ ] T006 [P] Create test project `TaskFlow.Tests` in `backend/tests/TaskFlow.Tests/` (depends on T001)
-- [ ] T007 Add all backend projects to `backend/TaskFlow.sln` (depends on T002, T003, T004, T005, T006)
-- [ ] T008 Configure project reference from `backend/src/TaskFlow.Application/TaskFlow.Application.csproj` to `backend/src/TaskFlow.Domain/TaskFlow.Domain.csproj` (depends on T003, T004)
-- [ ] T009 Configure project references from `backend/src/TaskFlow.Infrastructure/TaskFlow.Infrastructure.csproj` to `backend/src/TaskFlow.Application/TaskFlow.Application.csproj` and `backend/src/TaskFlow.Domain/TaskFlow.Domain.csproj` (depends on T003, T004, T005)
-- [ ] T010 Configure project references from `backend/src/TaskFlow.Api/TaskFlow.Api.csproj` to `backend/src/TaskFlow.Application/TaskFlow.Application.csproj` and `backend/src/TaskFlow.Infrastructure/TaskFlow.Infrastructure.csproj` (depends on T002, T003, T005)
-- [ ] T011 Configure project references from `backend/tests/TaskFlow.Tests/TaskFlow.Tests.csproj` to all backend source projects (depends on T002, T003, T004, T005, T006)
-- [ ] T012 Add backend package dependencies for ASP.NET Core, EF Core, Npgsql provider, Swagger/OpenAPI, and test tooling in the relevant `.csproj` files under `backend/src/` and `backend/tests/`
-- [ ] T013 Create React + Vite frontend project structure in `frontend/` with TypeScript enabled
-- [ ] T014 [P] Create frontend source folders `frontend/src/components/`, `frontend/src/pages/`, `frontend/src/services/`, `frontend/src/types/`, and `frontend/src/tests/` (depends on T013)
-- [ ] T015 Create Docker Compose PostgreSQL service in `docker-compose.yml`
-- [ ] T016 Create local backend configuration placeholders for PostgreSQL connection in `backend/src/TaskFlow.Api/appsettings.Development.json` (depends on T015)
+- [X] T001 Create backend solution `TaskFlow.sln` in `backend/TaskFlow.sln`
+- [X] T002 Create ASP.NET Core Web API project `TaskFlow.Api` in `backend/src/TaskFlow.Api/` (depends on T001)
+- [X] T003 [P] Create class library project `TaskFlow.Application` in `backend/src/TaskFlow.Application/` (depends on T001)
+- [X] T004 [P] Create class library project `TaskFlow.Domain` in `backend/src/TaskFlow.Domain/` (depends on T001)
+- [X] T005 [P] Create class library project `TaskFlow.Infrastructure` in `backend/src/TaskFlow.Infrastructure/` (depends on T001)
+- [X] T006 [P] Create test project `TaskFlow.Tests` in `backend/tests/TaskFlow.Tests/` (depends on T001)
+- [X] T007 Add all backend projects to `backend/TaskFlow.sln` (depends on T002, T003, T004, T005, T006)
+- [X] T008 Configure project reference from `backend/src/TaskFlow.Application/TaskFlow.Application.csproj` to `backend/src/TaskFlow.Domain/TaskFlow.Domain.csproj` (depends on T003, T004)
+- [X] T009 Configure project references from `backend/src/TaskFlow.Infrastructure/TaskFlow.Infrastructure.csproj` to `backend/src/TaskFlow.Application/TaskFlow.Application.csproj` and `backend/src/TaskFlow.Domain/TaskFlow.Domain.csproj` (depends on T003, T004, T005)
+- [X] T010 Configure project references from `backend/src/TaskFlow.Api/TaskFlow.Api.csproj` to `backend/src/TaskFlow.Application/TaskFlow.Application.csproj` and `backend/src/TaskFlow.Infrastructure/TaskFlow.Infrastructure.csproj` (depends on T002, T003, T005)
+- [X] T011 Configure project references from `backend/tests/TaskFlow.Tests/TaskFlow.Tests.csproj` to all backend source projects (depends on T002, T003, T004, T005, T006)
+- [X] T012 Add backend package dependencies for ASP.NET Core, EF Core, Npgsql provider, Swagger/OpenAPI, and test tooling in the relevant `.csproj` files under `backend/src/` and `backend/tests/`
+- [X] T013 Create React + Vite frontend project structure in `frontend/` with TypeScript enabled
+- [X] T014 [P] Create frontend source folders `frontend/src/components/`, `frontend/src/pages/`, `frontend/src/services/`, `frontend/src/types/`, and `frontend/src/tests/` (depends on T013)
+- [X] T015 Create Docker Compose PostgreSQL service in `docker-compose.yml`
+- [X] T016 Create local backend configuration placeholders for PostgreSQL connection in `backend/src/TaskFlow.Api/appsettings.Development.json` (depends on T015)
 
 **Checkpoint**: Solution, frontend skeleton, and PostgreSQL local infrastructure are ready for domain and persistence work.
 

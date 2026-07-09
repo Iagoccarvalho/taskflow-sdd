@@ -26,7 +26,64 @@ Ficam fora da primeira feature: RabbitMQ, MassTransit, Hangfire, Redis, backgrou
 
 ## Stack planejada
 
-- Backend: .NET
+- Backend: .NET 10
 - Frontend: React + Vite
 - Banco: PostgreSQL
 - Infra local: Docker Compose
+
+## Estrutura inicial
+
+```text
+backend/
+├── TaskFlow.sln
+├── src/
+│   ├── TaskFlow.Api/
+│   ├── TaskFlow.Application/
+│   ├── TaskFlow.Domain/
+│   └── TaskFlow.Infrastructure/
+└── tests/
+    └── TaskFlow.Tests/
+
+frontend/
+└── src/
+```
+
+## Comandos iniciais
+
+Subir PostgreSQL local:
+
+```bash
+docker compose up -d postgres
+```
+
+Restaurar e validar o backend:
+
+```bash
+dotnet restore backend/TaskFlow.sln
+dotnet build backend/TaskFlow.sln
+dotnet test backend/TaskFlow.sln
+```
+
+Rodar a API:
+
+```bash
+dotnet run --project backend/src/TaskFlow.Api
+```
+
+Instalar dependências do frontend:
+
+```bash
+npm install --prefix frontend
+```
+
+Rodar o frontend:
+
+```bash
+npm run dev --prefix frontend
+```
+
+Validar build do frontend:
+
+```bash
+npm run build --prefix frontend
+```
