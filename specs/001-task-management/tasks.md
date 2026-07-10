@@ -146,10 +146,10 @@
 
 **Purpose**: Verify required rules, API behavior, persistence, and core UI flows.
 
-- [ ] T075 [P] [US1] Test task creation sets status Pending in `backend/tests/TaskFlow.Tests/Domain/TaskItemTests.cs` (depends on T020)
-- [ ] T076 [P] [US1] Test required title rejects null, empty, and whitespace in `backend/tests/TaskFlow.Tests/Domain/TaskItemTests.cs` (depends on T020)
-- [ ] T077 [P] [US4] Test task completion sets status Completed and CompletedAt in `backend/tests/TaskFlow.Tests/Domain/TaskItemTests.cs` (depends on T022)
-- [ ] T078 [P] [US4] Test repeated completion does not create duplicate completion intent in `backend/tests/TaskFlow.Tests/Domain/TaskItemTests.cs` (depends on T022)
+- [X] T075 [P] [US1] Test task creation sets status Pending in `backend/tests/TaskFlow.Tests/Domain/TaskItemTests.cs` (depends on T020)
+- [X] T076 [P] [US1] Test required title rejects null, empty, and whitespace in `backend/tests/TaskFlow.Tests/Domain/TaskItemTests.cs` (depends on T020)
+- [X] T077 [P] [US4] Test task completion sets status Completed and CompletedAt in `backend/tests/TaskFlow.Tests/Domain/TaskItemTests.cs` (depends on T022)
+- [X] T078 [P] [US4] Test repeated completion does not create duplicate completion intent in `backend/tests/TaskFlow.Tests/Domain/TaskItemTests.cs` (depends on T022)
 - [ ] T079 [US1] Test create task use case persists Pending task in `backend/tests/TaskFlow.Tests/Application/CreateTaskUseCaseTests.cs` (depends on T040)
 - [ ] T080 [US3] Test update task use case rejects empty title in `backend/tests/TaskFlow.Tests/Application/UpdateTaskUseCaseTests.cs` (depends on T043)
 - [ ] T081 [US4] Test complete task use case persists task status and processing log in `backend/tests/TaskFlow.Tests/Application/CompleteTaskUseCaseTests.cs` (depends on T044)
