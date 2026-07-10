@@ -60,15 +60,15 @@
 
 **Purpose**: Configure PostgreSQL persistence, EF Core mapping, migrations, repositories, and optional seed.
 
-- [ ] T025 Add EF Core and Npgsql package references to `backend/src/TaskFlow.Infrastructure/TaskFlow.Infrastructure.csproj` (depends on T012)
-- [ ] T026 Create `TaskFlowDbContext` with `Tasks` and `ProcessingLogs` sets in `backend/src/TaskFlow.Infrastructure/Persistence/TaskFlowDbContext.cs` (depends on T019, T023, T025)
-- [ ] T027 [P] Configure `TaskItem` EF Core mapping for `tasks` table in `backend/src/TaskFlow.Infrastructure/Persistence/Configurations/TaskItemConfiguration.cs` (depends on T026)
-- [ ] T028 [P] Configure `ProcessingLog` EF Core mapping for `task_processing_logs` table in `backend/src/TaskFlow.Infrastructure/Persistence/Configurations/ProcessingLogConfiguration.cs` (depends on T026)
-- [ ] T029 Configure one-to-many relationship from task to processing logs and uniqueness for one `TaskCompleted` log per task in `backend/src/TaskFlow.Infrastructure/Persistence/Configurations/ProcessingLogConfiguration.cs` (depends on T027, T028)
-- [ ] T030 Register Infrastructure persistence dependencies in `backend/src/TaskFlow.Infrastructure/DependencyInjection.cs` (depends on T026)
+- [X] T025 Add EF Core and Npgsql package references to `backend/src/TaskFlow.Infrastructure/TaskFlow.Infrastructure.csproj` (depends on T012)
+- [X] T026 Create `TaskFlowDbContext` with `Tasks` and `ProcessingLogs` sets in `backend/src/TaskFlow.Infrastructure/Persistence/TaskFlowDbContext.cs` (depends on T019, T023, T025)
+- [X] T027 [P] Configure `TaskItem` EF Core mapping for `tasks` table in `backend/src/TaskFlow.Infrastructure/Persistence/Configurations/TaskItemConfiguration.cs` (depends on T026)
+- [X] T028 [P] Configure `ProcessingLog` EF Core mapping for `task_processing_logs` table in `backend/src/TaskFlow.Infrastructure/Persistence/Configurations/ProcessingLogConfiguration.cs` (depends on T026)
+- [X] T029 Configure one-to-many relationship from task to processing logs and uniqueness for one `TaskCompleted` log per task in `backend/src/TaskFlow.Infrastructure/Persistence/Configurations/ProcessingLogConfiguration.cs` (depends on T027, T028)
+- [X] T030 Register Infrastructure persistence dependencies in `backend/src/TaskFlow.Infrastructure/DependencyInjection.cs` (depends on T026)
 - [ ] T031 Create repository implementation for task persistence in `backend/src/TaskFlow.Infrastructure/Repositories/TaskRepository.cs` (depends on T026)
 - [ ] T032 Create repository implementation for processing log persistence in `backend/src/TaskFlow.Infrastructure/Repositories/ProcessingLogRepository.cs` (depends on T026)
-- [ ] T033 Create initial EF Core migration for `tasks` and `task_processing_logs` in `backend/src/TaskFlow.Infrastructure/Persistence/Migrations/` (depends on T027, T028, T029)
+- [X] T033 Create initial EF Core migration for `tasks` and `task_processing_logs` in `backend/src/TaskFlow.Infrastructure/Persistence/Migrations/` (depends on T027, T028, T029)
 - [ ] T034 [P] Create optional development seed hook in `backend/src/TaskFlow.Infrastructure/Persistence/DevelopmentSeed.cs` without enabling production seed by default (depends on T026)
 
 **Checkpoint**: Persistence model can store tasks and processing logs with repeatable migrations.
