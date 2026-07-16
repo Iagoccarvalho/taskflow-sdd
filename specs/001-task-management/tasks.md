@@ -66,8 +66,8 @@
 - [X] T028 [P] Configure `ProcessingLog` EF Core mapping for `task_processing_logs` table in `backend/src/TaskFlow.Infrastructure/Persistence/Configurations/ProcessingLogConfiguration.cs` (depends on T026)
 - [X] T029 Configure one-to-many relationship from task to processing logs and uniqueness for one `TaskCompleted` log per task in `backend/src/TaskFlow.Infrastructure/Persistence/Configurations/ProcessingLogConfiguration.cs` (depends on T027, T028)
 - [X] T030 Register Infrastructure persistence dependencies in `backend/src/TaskFlow.Infrastructure/DependencyInjection.cs` (depends on T026)
-- [ ] T031 Create repository implementation for task persistence in `backend/src/TaskFlow.Infrastructure/Repositories/TaskRepository.cs` (depends on T026)
-- [ ] T032 Create repository implementation for processing log persistence in `backend/src/TaskFlow.Infrastructure/Repositories/ProcessingLogRepository.cs` (depends on T026)
+- [X] T031 Create repository implementation for task persistence in `backend/src/TaskFlow.Infrastructure/Repositories/TaskRepository.cs` (depends on T026)
+- [X] T032 Create repository implementation for processing log persistence in `backend/src/TaskFlow.Infrastructure/Repositories/ProcessingLogRepository.cs` (depends on T026)
 - [X] T033 Create initial EF Core migration for `tasks` and `task_processing_logs` in `backend/src/TaskFlow.Infrastructure/Persistence/Migrations/` (depends on T027, T028, T029)
 - [ ] T034 [P] Create optional development seed hook in `backend/src/TaskFlow.Infrastructure/Persistence/DevelopmentSeed.cs` without enabling production seed by default (depends on T026)
 
@@ -79,20 +79,20 @@
 
 **Purpose**: Define DTOs, use cases, validation, repository contracts, and business workflow coordination.
 
-- [ ] T035 [P] Create task DTOs `CreateTaskRequest`, `UpdateTaskRequest`, and `TaskResponse` in `backend/src/TaskFlow.Application/Tasks/TaskDtos.cs`
-- [ ] T036 [P] Create processing log DTOs `ProcessingLogResponse` and `CompleteTaskResponse` in `backend/src/TaskFlow.Application/ProcessingLogs/ProcessingLogDtos.cs`
-- [ ] T037 [P] Create task repository contract in `backend/src/TaskFlow.Application/Abstractions/ITaskRepository.cs`
-- [ ] T038 [P] Create processing log repository contract in `backend/src/TaskFlow.Application/Abstractions/IProcessingLogRepository.cs`
-- [ ] T039 [P] Create unit of work or transaction contract in `backend/src/TaskFlow.Application/Abstractions/IUnitOfWork.cs`
-- [ ] T040 [US1] Create task creation use case/service in `backend/src/TaskFlow.Application/Tasks/CreateTaskUseCase.cs` (depends on T020, T035, T037)
-- [ ] T041 [US2] Create task listing use case/service in `backend/src/TaskFlow.Application/Tasks/ListTasksUseCase.cs` (depends on T035, T037)
-- [ ] T042 [US2] Create get-task-by-id use case/service in `backend/src/TaskFlow.Application/Tasks/GetTaskUseCase.cs` (depends on T035, T037)
-- [ ] T043 [US3] Create task update use case/service in `backend/src/TaskFlow.Application/Tasks/UpdateTaskUseCase.cs` (depends on T021, T035, T037)
-- [ ] T044 [US4] Create task completion use case/service that updates status and creates one processing log in `backend/src/TaskFlow.Application/Tasks/CompleteTaskUseCase.cs` (depends on T022, T023, T036, T037, T038, T039)
-- [ ] T045 [US4] Create task processing log listing use case/service in `backend/src/TaskFlow.Application/ProcessingLogs/ListTaskProcessingLogsUseCase.cs` (depends on T036, T038)
-- [ ] T046 [US4] Create global processing log listing use case/service in `backend/src/TaskFlow.Application/ProcessingLogs/ListProcessingLogsUseCase.cs` (depends on T036, T038)
-- [ ] T047 Create application validation/result model for not found and validation errors in `backend/src/TaskFlow.Application/Common/ApplicationResult.cs`
-- [ ] T048 Register Application services in `backend/src/TaskFlow.Application/DependencyInjection.cs` (depends on T040, T041, T042, T043, T044, T045, T046)
+- [X] T035 [P] Create task DTOs `CreateTaskRequest`, `UpdateTaskRequest`, and `TaskResponse` in `backend/src/TaskFlow.Application/Tasks/TaskDtos.cs`
+- [X] T036 [P] Create processing log DTOs `ProcessingLogResponse` and `CompleteTaskResponse` in `backend/src/TaskFlow.Application/ProcessingLogs/ProcessingLogDtos.cs`
+- [X] T037 [P] Create task repository contract in `backend/src/TaskFlow.Application/Abstractions/ITaskRepository.cs`
+- [X] T038 [P] Create processing log repository contract in `backend/src/TaskFlow.Application/Abstractions/IProcessingLogRepository.cs`
+- [X] T039 [P] Create unit of work or transaction contract in `backend/src/TaskFlow.Application/Abstractions/IUnitOfWork.cs`
+- [X] T040 [US1] Create task creation use case/service in `backend/src/TaskFlow.Application/Tasks/CreateTaskUseCase.cs` (depends on T020, T035, T037)
+- [X] T041 [US2] Create task listing use case/service in `backend/src/TaskFlow.Application/Tasks/ListTasksUseCase.cs` (depends on T035, T037)
+- [X] T042 [US2] Create get-task-by-id use case/service in `backend/src/TaskFlow.Application/Tasks/GetTaskUseCase.cs` (depends on T035, T037)
+- [X] T043 [US3] Create task update use case/service in `backend/src/TaskFlow.Application/Tasks/UpdateTaskUseCase.cs` (depends on T021, T035, T037)
+- [X] T044 [US4] Create task completion use case/service that updates status and creates one processing log in `backend/src/TaskFlow.Application/Tasks/CompleteTaskUseCase.cs` (depends on T022, T023, T036, T037, T038, T039)
+- [X] T045 [US4] Create task processing log listing use case/service in `backend/src/TaskFlow.Application/ProcessingLogs/ListTaskProcessingLogsUseCase.cs` (depends on T036, T038)
+- [X] T046 [US4] Create global processing log listing use case/service in `backend/src/TaskFlow.Application/ProcessingLogs/ListProcessingLogsUseCase.cs` (depends on T036, T038)
+- [X] T047 Create application validation/result model for not found and validation errors in `backend/src/TaskFlow.Application/Common/ApplicationResult.cs`
+- [X] T048 Register Application services in `backend/src/TaskFlow.Application/DependencyInjection.cs` (depends on T040, T041, T042, T043, T044, T045, T046)
 
 **Checkpoint**: Application layer exposes all task and log workflows without depending on controllers.
 
