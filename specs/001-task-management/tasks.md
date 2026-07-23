@@ -102,20 +102,20 @@
 
 **Purpose**: Expose REST endpoints, Swagger, CORS, dependency injection, and error handling.
 
-- [ ] T049 Configure API dependency injection for Application and Infrastructure in `backend/src/TaskFlow.Api/Program.cs` (depends on T030, T048)
-- [ ] T050 Configure Swagger/OpenAPI for development in `backend/src/TaskFlow.Api/Program.cs` (depends on T049)
-- [ ] T051 Configure CORS policy for local Vite frontend in `backend/src/TaskFlow.Api/Program.cs` (depends on T049)
-- [ ] T052 Configure centralized error handling middleware in `backend/src/TaskFlow.Api/Middleware/ErrorHandlingMiddleware.cs` (depends on T047)
-- [ ] T053 Register centralized error handling middleware in `backend/src/TaskFlow.Api/Program.cs` (depends on T052)
-- [ ] T054 [P] Create API request/response contracts matching OpenAPI task schemas in `backend/src/TaskFlow.Api/Contracts/TasksContracts.cs` (depends on T035)
-- [ ] T055 [P] Create API response contracts matching OpenAPI log schemas in `backend/src/TaskFlow.Api/Contracts/ProcessingLogContracts.cs` (depends on T036)
-- [ ] T056 [US1] Create `POST /api/tasks` endpoint in `backend/src/TaskFlow.Api/Controllers/TasksController.cs` (depends on T040, T054)
-- [ ] T057 [US2] Create `GET /api/tasks` and `GET /api/tasks/{taskId}` endpoints in `backend/src/TaskFlow.Api/Controllers/TasksController.cs` (depends on T041, T042, T054)
-- [ ] T058 [US3] Create `PUT /api/tasks/{taskId}` endpoint in `backend/src/TaskFlow.Api/Controllers/TasksController.cs` (depends on T043, T054)
-- [ ] T059 [US4] Create `POST /api/tasks/{taskId}/complete` endpoint in `backend/src/TaskFlow.Api/Controllers/TasksController.cs` (depends on T044, T054, T055)
-- [ ] T060 [US4] Create `GET /api/tasks/{taskId}/processing-logs` endpoint in `backend/src/TaskFlow.Api/Controllers/ProcessingLogsController.cs` (depends on T045, T055)
+- [X] T049 Configure API dependency injection for Application and Infrastructure in `backend/src/TaskFlow.Api/Program.cs` (depends on T030, T048)
+- [X] T050 Configure Swagger/OpenAPI for development in `backend/src/TaskFlow.Api/Program.cs` (depends on T049)
+- [X] T051 Configure CORS policy for local Vite frontend in `backend/src/TaskFlow.Api/Program.cs` (depends on T049)
+- [X] T052 Configure centralized error handling middleware in `backend/src/TaskFlow.Api/Middleware/ErrorHandlingMiddleware.cs` (depends on T047)
+- [X] T053 Register centralized error handling middleware in `backend/src/TaskFlow.Api/Program.cs` (depends on T052)
+- [X] T054 [P] Create API request/response contracts matching OpenAPI task schemas in `backend/src/TaskFlow.Api/Contracts/TasksContracts.cs` (depends on T035)
+- [X] T055 [P] Create API response contracts matching OpenAPI log schemas in `backend/src/TaskFlow.Api/Contracts/ProcessingLogContracts.cs` (depends on T036)
+- [X] T056 [US1] Create `POST /api/tasks` endpoint in `backend/src/TaskFlow.Api/Controllers/TasksController.cs` (depends on T040, T054)
+- [X] T057 [US2] Create `GET /api/tasks` and `GET /api/tasks/{taskId}` endpoints in `backend/src/TaskFlow.Api/Controllers/TasksController.cs` (depends on T041, T042, T054)
+- [X] T058 [US3] Create `PUT /api/tasks/{taskId}` endpoint in `backend/src/TaskFlow.Api/Controllers/TasksController.cs` (depends on T043, T054)
+- [X] T059 [US4] Create `PATCH /api/tasks/{taskId}/complete` endpoint in `backend/src/TaskFlow.Api/Controllers/TasksController.cs` (depends on T044, T054, T055)
+- [X] T060 [US4] Create `GET /api/tasks/{taskId}/logs` endpoint in `backend/src/TaskFlow.Api/Controllers/TaskLogsController.cs` (depends on T045, T055)
 - [ ] T061 [US4] Create `GET /api/processing-logs` endpoint in `backend/src/TaskFlow.Api/Controllers/ProcessingLogsController.cs` (depends on T046, T055)
-- [ ] T062 Verify controllers contain no business rules and delegate to Application use cases in `backend/src/TaskFlow.Api/Controllers/`
+- [X] T062 Verify controllers contain no business rules and delegate to Application use cases in `backend/src/TaskFlow.Api/Controllers/`
 
 **Checkpoint**: API matches `specs/001-task-management/contracts/openapi.yaml` and exposes tasks/logs through thin controllers.
 
